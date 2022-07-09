@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/features/home/data/models/product.dart';
-import 'package:shop_app/features/home/presentation/pages/product_selected.dart';
+
 import 'package:shop_app/features/home/presentation/provider/products.dart';
 import 'package:shop_app/features/home/widgets/product_widget.dart';
 
@@ -24,11 +23,10 @@ class ListViewProducts extends StatelessWidget {
         thickness: 1,
         color: Colors.grey,
       ),
-      itemBuilder: (BuildContext context, int index) => ChangeNotifierProvider(
-        create: (BuildContext context) {
-          products[index];
-        },
-        child: ProductItem(),
+      itemBuilder: (BuildContext context, int index) =>
+          ChangeNotifierProvider.value(
+        value: products[index],
+        child: const ProductItem(),
       ),
     );
   }

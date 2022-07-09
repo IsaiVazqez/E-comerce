@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/features/home/data/models/product.dart';
 import 'package:shop_app/features/home/presentation/pages/product_selected.dart';
+import 'package:shop_app/features/home/data/models/product.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({Key? key}) : super(key: key);
@@ -28,15 +28,15 @@ class ProductItem extends StatelessWidget {
             alignment: Alignment.topLeft,
             children: [
               _ProductDetails(
-                title: product.title,
+                titlew: product.title,
                 descr: product.description,
               ),
               _BackgroundImage(product.imageUrl),
               _Icons(
                   cart: CupertinoIcons.add,
                   like: product.isFavorite
-                      ? CupertinoIcons.heart_circle
-                      : CupertinoIcons.heart_circle_fill)
+                      ? CupertinoIcons.heart_circle_fill
+                      : CupertinoIcons.heart_circle)
             ],
           ),
         ),
@@ -50,16 +50,18 @@ class ProductItem extends StatelessWidget {
 }
 
 class _ProductDetails extends StatelessWidget {
-  final String title;
+  final String titlew;
   final String descr;
 
   const _ProductDetails({
-    required this.title,
+    required this.titlew,
     required this.descr,
   });
 
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<Product>(context);
+
     return Padding(
       padding: const EdgeInsets.only(left: 150),
       child: Container(
@@ -75,7 +77,7 @@ class _ProductDetails extends StatelessWidget {
                   color: Color.fromARGB(255, 35, 41, 70),
                   fontWeight: FontWeight.bold),
               child: Text(
-                title,
+                titlew,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
