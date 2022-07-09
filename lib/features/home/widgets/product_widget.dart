@@ -1,36 +1,44 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/features/home/data/models/product.dart';
+import 'package:shop_app/features/home/presentation/pages/product_selected.dart';
 
 class ProductItem extends StatelessWidget {
-  final String id;
-  final String title;
-  final String imageUrl;
-  final String description;
-
-  const ProductItem(this.id, this.title, this.imageUrl, this.description,
-      {Key? key})
-      : super(key: key);
+  const ProductItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<Product>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        margin: const EdgeInsets.only(top: 15),
-        width: double.infinity,
-        height: 120,
-        decoration: _cardBorders(),
-        child: Stack(
-          alignment: Alignment.topLeft,
-          children: [
-            _ProductDetails(
-              title: title,
-              descr: description,
-            ),
-            _BackgroundImage(imageUrl),
-            const _Icons(
-                cart: CupertinoIcons.add, like: CupertinoIcons.heart_circle)
-          ],
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).pushNamed(
+            ProductDetailScreen.routeName,
+            arguments: product.id,
+          );
+        },
+        child: Container(
+          margin: const EdgeInsets.only(top: 15),
+          width: double.infinity,
+          height: 120,
+          decoration: _cardBorders(),
+          child: Stack(
+            alignment: Alignment.topLeft,
+            children: [
+              _ProductDetails(
+                title: product.title,
+                descr: product.description,
+              ),
+              _BackgroundImage(product.imageUrl),
+              _Icons(
+                  cart: CupertinoIcons.add,
+                  like: product.isFavorite
+                      ? CupertinoIcons.heart_circle
+                      : CupertinoIcons.heart_circle_fill)
+            ],
+          ),
         ),
       ),
     );
@@ -55,7 +63,7 @@ class _ProductDetails extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 150),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
         width: double.infinity,
         decoration: _buildBoxDecoration(),
         child: Column(
@@ -137,23 +145,27 @@ class _Icons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<Product>(context);
+
     return Positioned(
       bottom: 0,
       left: 260,
       child: Row(
         children: <Widget>[
           CupertinoButton(
-            onPressed: () {},
+            onPressed: () {
+              product.toggleFavoriteStatus();
+            },
             child: Icon(
               like,
-              color: const Color.fromRGBO(212, 191, 249, 1),
+              color: const Color.fromARGB(255, 194, 160, 252),
             ),
           ),
           CupertinoButton(
             onPressed: () {},
             child: Icon(
               cart,
-              color: const Color.fromRGBO(212, 191, 249, 1),
+              color: const Color.fromARGB(255, 194, 160, 252),
             ),
           )
         ],
