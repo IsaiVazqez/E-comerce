@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           primary: const Color.fromARGB(255, 255, 255, 255),
           secondary: const Color.fromARGB(255, 184, 193, 236),
         ),
-        canvasColor: const Color.fromARGB(255, 35, 41, 70),
+        canvasColor: Colors.white,
         fontFamily: 'Raleway',
         textTheme: ThemeData.light().textTheme.copyWith(
               bodyText1: const TextStyle(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
@@ -15,9 +16,9 @@ class ProductItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
-        margin: const EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 15),
         width: double.infinity,
-        height: 150,
+        height: 120,
         decoration: _cardBorders(),
         child: Stack(
           alignment: Alignment.topLeft,
@@ -28,23 +29,16 @@ class ProductItem extends StatelessWidget {
             ),
             _BackgroundImage(imageUrl),
             const _Icons(
-                like: Icons.favorite_border, cart: Icons.shopping_cart),
+                cart: CupertinoIcons.add, like: CupertinoIcons.heart_circle)
           ],
         ),
       ),
     );
   }
 
-  BoxDecoration _cardBorders() => BoxDecoration(
-          color: const Color.fromARGB(255, 184, 193, 236),
-          borderRadius: BorderRadius.circular(25),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              offset: Offset(0, 10),
-              blurRadius: 10,
-            ),
-          ]);
+  BoxDecoration _cardBorders() => const BoxDecoration(
+        color: Colors.transparent,
+      );
 }
 
 class _ProductDetails extends StatelessWidget {
@@ -67,22 +61,26 @@ class _ProductDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              title,
+            DefaultTextStyle(
               style: const TextStyle(
                   fontSize: 18,
                   color: Color.fromARGB(255, 35, 41, 70),
                   fontWeight: FontWeight.bold),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+              child: Text(
+                title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-            Text(
-              descr,
+            DefaultTextStyle(
               style: const TextStyle(
                   fontSize: 16,
                   color: Color.fromARGB(255, 35, 41, 70),
                   fontWeight: FontWeight.w500),
-              maxLines: 4,
+              child: Text(
+                descr,
+                maxLines: 2,
+              ),
             ),
           ],
         ),
@@ -91,7 +89,7 @@ class _ProductDetails extends StatelessWidget {
   }
 
   BoxDecoration _buildBoxDecoration() => const BoxDecoration(
-      color: Color.fromARGB(255, 184, 193, 236),
+      color: Colors.transparent,
       borderRadius: BorderRadius.all(
         Radius.circular(10),
       ));
@@ -110,8 +108,8 @@ class _BackgroundImage extends StatelessWidget {
       ),
       child: Container(
         color: Colors.transparent,
-        width: 148,
-        height: double.infinity,
+        width: 155,
+        height: 100,
         child: url == null
             ? const Image(
                 image: AssetImage('assets/no-image.png'),
@@ -141,21 +139,21 @@ class _Icons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Positioned(
       bottom: 0,
-      left: 250,
+      left: 260,
       child: Row(
         children: <Widget>[
-          IconButton(
+          CupertinoButton(
             onPressed: () {},
-            icon: Icon(
+            child: Icon(
               like,
-              color: Colors.white,
+              color: const Color.fromRGBO(212, 191, 249, 1),
             ),
           ),
-          IconButton(
+          CupertinoButton(
             onPressed: () {},
-            icon: Icon(
+            child: Icon(
               cart,
-              color: Colors.white,
+              color: const Color.fromRGBO(212, 191, 249, 1),
             ),
           )
         ],

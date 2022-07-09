@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_app/features/home/data/models/product.dart';
 import 'package:shop_app/features/home/widgets/product_widget.dart';
@@ -42,35 +43,29 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'My shop',
-          style: TextStyle(
-            color: Color.fromARGB(255, 35, 41, 70),
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 184, 193, 236),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(18),
-          ),
-        ),
+    return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        middle: Text('My shop'),
+        backgroundColor: Color.fromRGBO(183, 148, 246, 100),
       ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          childAspectRatio: 1.99,
-          crossAxisSpacing: 5,
-          mainAxisSpacing: 1,
-        ),
-        padding: const EdgeInsets.all(10),
+      child: ListView.separated(
+        physics: const ScrollPhysics(),
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
         itemCount: loadedProducts.length,
-        itemBuilder: (ctx, i) => ProductItem(
-          loadedProducts[i].id,
-          loadedProducts[i].title,
-          loadedProducts[i].imageUrl,
-          loadedProducts[i].description,
+        separatorBuilder: (BuildContext context, int index) => const Divider(
+          height: 0,
+          thickness: 1,
+          color: Colors.grey,
+        ),
+        itemBuilder: (BuildContext context, int index) => GestureDetector(
+          onTap: () {},
+          child: ProductItem(
+            loadedProducts[index].id,
+            loadedProducts[index].title,
+            loadedProducts[index].imageUrl,
+            loadedProducts[index].description,
+          ),
         ),
       ),
     );
