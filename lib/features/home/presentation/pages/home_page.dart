@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/features/home/widgets/list_view.dart';
+import 'package:shop_app/features/home/presentation/widgets/list_view.dart';
 
 enum FilterOptions {
   favorites,

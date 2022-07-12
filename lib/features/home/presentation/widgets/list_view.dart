@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:shop_app/features/home/presentation/provider/products.dart';
-import 'package:shop_app/features/home/widgets/product_widget.dart';
+import 'package:shop_app/features/home/presentation/widgets/product_widget.dart';
 
 class ListViewProducts extends StatelessWidget {
   final bool showFavs;
