@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/features/home/presentation/pages/product_selected.dart';
 import 'package:shop_app/features/home/data/models/product.dart';
+import 'package:shop_app/features/home/presentation/provider/cart.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({Key? key}) : super(key: key);
@@ -148,6 +149,7 @@ class _Icons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context);
+    final cartProvider = Provider.of<Cart>(context, listen: false);
 
     return Positioned(
       bottom: 0,
@@ -164,7 +166,9 @@ class _Icons extends StatelessWidget {
             ),
           ),
           CupertinoButton(
-            onPressed: () {},
+            onPressed: () {
+              cartProvider.addItem(product.id, product.price, product.title);
+            },
             child: Icon(
               cart,
               color: const Color.fromARGB(255, 194, 160, 252),
