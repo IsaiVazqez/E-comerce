@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/features/home/presentation/provider/products.dart';
+import 'package:shop_app/features/ProductsScreen/presentation/provider/products.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({Key? key}) : super(key: key);

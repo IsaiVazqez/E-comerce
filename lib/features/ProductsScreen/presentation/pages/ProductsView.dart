@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/features/home/presentation/provider/cart.dart';
-import 'package:shop_app/features/home/presentation/widgets/badge.dart';
-import 'package:shop_app/features/home/presentation/widgets/list_view.dart';
+import 'package:shop_app/features/ProductsScreen/presentation/provider/cart.dart';
+import 'package:shop_app/features/ProductsScreen/presentation/widgets/badge.dart';
+import 'package:shop_app/features/ProductsScreen/presentation/widgets/list_view.dart';
 
 enum FilterOptions {
   favorites,

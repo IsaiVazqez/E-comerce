@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/features/home/presentation/pages/product_selected.dart';
-import 'package:shop_app/features/home/data/models/product.dart';
-import 'package:shop_app/features/home/presentation/provider/cart.dart';
+import 'package:shop_app/features/ProductsScreen/presentation/pages/product_selected.dart';
+import 'package:shop_app/features/ProductsScreen/data/models/product.dart';
+import 'package:shop_app/features/ProductsScreen/presentation/provider/cart.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({Key? key}) : super(key: key);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/features/home/presentation/pages/home_page.dart';
+import 'package:shop_app/features/ProductsScreen/presentation/pages/ProductsView.dart';
 
-import '../features/home/presentation/pages/product_selected.dart';
+import '../features/ProductsScreen/presentation/pages/product_selected.dart';
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
-  'home': (_) => const HomePage(),
+  'ProductsView': (_) => const HomePage(),
   ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
 };
