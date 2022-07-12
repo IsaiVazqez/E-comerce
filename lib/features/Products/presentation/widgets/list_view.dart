@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:shop_app/features/ProductsScreen/presentation/provider/products.dart';
-import 'package:shop_app/features/ProductsScreen/presentation/widgets/product_widget.dart';
+import 'package:shop_app/features/Products/presentation/provider/products.dart';
+import 'package:shop_app/features/Products/presentation/widgets/product_widget.dart';
 
 class ListViewProducts extends StatelessWidget {
   final bool showFavs;
