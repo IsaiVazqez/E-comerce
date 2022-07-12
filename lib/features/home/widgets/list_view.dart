@@ -5,12 +5,14 @@ import 'package:shop_app/features/home/presentation/provider/products.dart';
 import 'package:shop_app/features/home/widgets/product_widget.dart';
 
 class ListViewProducts extends StatelessWidget {
-  const ListViewProducts({Key? key}) : super(key: key);
+  final bool showFavs;
+
+  const ListViewProducts(this.showFavs, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final productsData = Provider.of<Products>(context);
-    final products = productsData.items;
+    final products = showFavs ? productsData.favoriteItems : productsData.items;
     return ListView.separated(
       physics: const ScrollPhysics(),
       scrollDirection: Axis.vertical,

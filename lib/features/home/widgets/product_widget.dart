@@ -9,7 +9,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
+    final product = Provider.of<Product>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
@@ -32,11 +32,13 @@ class ProductItem extends StatelessWidget {
                 descr: product.description,
               ),
               _BackgroundImage(product.imageUrl),
-              _Icons(
-                  cart: CupertinoIcons.add,
-                  like: product.isFavorite
-                      ? CupertinoIcons.heart_circle_fill
-                      : CupertinoIcons.heart_circle)
+              Consumer<Product>(
+                builder: (context, product, child) => _Icons(
+                    cart: CupertinoIcons.add,
+                    like: product.isFavorite
+                        ? CupertinoIcons.heart_circle_fill
+                        : CupertinoIcons.heart_circle),
+              )
             ],
           ),
         ),
@@ -60,8 +62,6 @@ class _ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<Product>(context);
-
     return Padding(
       padding: const EdgeInsets.only(left: 150),
       child: Container(
