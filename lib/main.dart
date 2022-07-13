@@ -4,7 +4,9 @@ import 'package:shop_app/features/Products/presentation/provider/cart.dart';
 import 'package:shop_app/features/Products/presentation/provider/products.dart';
 import 'package:shop_app/routes/routes.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(
+      const MyApp(),
+    );
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

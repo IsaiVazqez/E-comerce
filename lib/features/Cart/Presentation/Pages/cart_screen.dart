@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/features/Cart/Presentation/widgets/add_cart_button.dart';
 import 'package:shop_app/features/Products/presentation/provider/cart.dart';
 
 class CartScreen extends StatelessWidget {
@@ -7,6 +8,8 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final Size size = MediaQuery.of(context).size;
+
     final cartProvider = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar(
@@ -26,15 +29,15 @@ class CartScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          confirmcart(cartProvider),
+          AddCartButton(monto: '\$${cartProvider.totalAmount.ceil()}')
         ],
       ),
     );
   }
 
-  Card confirmcart(Cart cartProvider) {
+/*   Card confirmcart(Cart cartProvider) {
     return Card(
-      margin: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
+      //  margin: const EdgeInsets.only(left: 0, right: 0, bottom: 0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24.0),
       ),
@@ -77,5 +80,5 @@ class CartScreen extends StatelessWidget {
         ),
       ),
     );
-  }
+  } */
 }
