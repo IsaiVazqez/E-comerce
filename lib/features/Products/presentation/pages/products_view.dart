@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/features/Cart/Presentation/Pages/cart_screen.dart';
 import 'package:shop_app/features/Products/presentation/provider/cart.dart';
 import 'package:shop_app/features/Products/presentation/widgets/badge.dart';
 import 'package:shop_app/features/Products/presentation/widgets/list_view.dart';
@@ -36,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       ),
       centerTitle: true,
       backgroundColor: const Color.fromRGBO(183, 148, 246, 1),
-      actions: [
+      actions: <Widget>[
         PopupMenuButton<FilterOptions>(
           onSelected: (FilterOptions selectedValue) {
             setState(() {
@@ -68,7 +69,10 @@ class _HomePageState extends State<HomePage> {
               CupertinoIcons.shopping_cart,
               color: Colors.black,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const CartScreen()));
+            },
           ),
         ),
       ],

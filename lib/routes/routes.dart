@@ -6,7 +6,6 @@ import '../features/Products/presentation/pages/product_selected.dart';
 
 final Map<String, Widget Function(BuildContext)> appRoutes = {
   'ProductsView': (_) => const HomePage(),
-  'ProductSelected': (_) => const ProductDetailScreen(),
   'CartScreen': (_) => const CartScreen(),
-  ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
+  ProductDetailScreen.routeName: (context) => const ProductDetailScreen(),
 };
