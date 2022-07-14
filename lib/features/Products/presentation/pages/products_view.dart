@@ -25,7 +25,32 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbarHome(),
-      body: ListViewProducts(_showOnlyFavorites),
+      body: Column(children: [
+        buttonsfilter(),
+        Expanded(child: ListViewProducts(_showOnlyFavorites))
+      ]),
+    );
+  }
+
+  Row buttonsfilter() {
+    return Row(
+      children: <Widget>[
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            fixedSize: const Size(155, 50),
+            textStyle:
+                const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            shape: const StadiumBorder(),
+            backgroundColor: Colors.white,
+          ),
+          onPressed: () {},
+          child: const Text(
+            'Place Order',
+            style: TextStyle(
+                color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600),
+          ),
+        ),
+      ],
     );
   }
 
