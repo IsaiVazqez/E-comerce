@@ -25,15 +25,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbarHome(),
-      body: Column(children: [
-        buttonsfilter(),
-        Expanded(child: ListViewProducts(_showOnlyFavorites))
-      ]),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(children: [
+          const SizedBox(
+            height: 18,
+          ),
+          buttonsfilter(),
+          ListViewProducts(_showOnlyFavorites)
+        ]),
+      ),
     );
   }
 
   Row buttonsfilter() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         OutlinedButton(
           style: OutlinedButton.styleFrom(
@@ -43,9 +50,32 @@ class _HomePageState extends State<HomePage> {
             shape: const StadiumBorder(),
             backgroundColor: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              _showOnlyFavorites = false;
+            });
+          },
           child: const Text(
-            'Place Order',
+            'Mostrar Todos',
+            style: TextStyle(
+                color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600),
+          ),
+        ),
+        OutlinedButton(
+          style: OutlinedButton.styleFrom(
+            fixedSize: const Size(155, 50),
+            textStyle:
+                const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            shape: const StadiumBorder(),
+            backgroundColor: Colors.white,
+          ),
+          onPressed: () {
+            setState(() {
+              _showOnlyFavorites = true;
+            });
+          },
+          child: const Text(
+            'Favoritos',
             style: TextStyle(
                 color: Colors.black, fontSize: 14, fontWeight: FontWeight.w600),
           ),
@@ -63,7 +93,7 @@ class _HomePageState extends State<HomePage> {
       centerTitle: true,
       backgroundColor: const Color.fromRGBO(183, 148, 246, 1),
       actions: <Widget>[
-        PopupMenuButton<FilterOptions>(
+/*         PopupMenuButton<FilterOptions>(
           onSelected: (FilterOptions selectedValue) {
             setState(() {
               if (selectedValue == FilterOptions.favorites) {
@@ -83,7 +113,7 @@ class _HomePageState extends State<HomePage> {
             const PopupMenuItem(
                 value: FilterOptions.all, child: Text('Show all'))
           ],
-        ),
+        ), */
         Consumer<Cart>(
           builder: (_, cart, ch) => Badgee(
             value: cart.itemCount.toString(),
