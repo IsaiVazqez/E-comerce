@@ -29,8 +29,9 @@ class _HomePageState extends State<HomePage> {
         child: Column(children: [
           const SizedBox(height: 18),
           const Appbar(),
-          const SizedBox(height: 18),
+          const SizedBox(height: 12),
           buttonsfilter(),
+          const SizedBox(height: 5),
           ListViewProducts(_showOnlyFavorites)
         ]),
       ),
