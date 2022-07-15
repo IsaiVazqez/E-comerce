@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_app/features/Products/presentation/pages/product_selected.dart';
 import 'package:shop_app/features/Products/data/models/product.dart';
 import 'package:shop_app/features/Products/presentation/provider/cart.dart';
+import 'package:shop_app/features/Products/presentation/provider/products.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: GestureDetector(
@@ -159,6 +161,10 @@ class _Icons extends StatelessWidget {
           CupertinoButton(
             onPressed: () {
               product.toggleFavoriteStatus();
+              Provider.of<Products>(
+                context,
+                listen: false,
+              ).refreshProductList();
             },
             child: Icon(
               like,

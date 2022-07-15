@@ -15,8 +15,8 @@ class Badgee extends StatelessWidget {
       children: [
         child,
         Positioned(
-          right: 8,
-          top: 8,
+          right: 3,
+          top: 5,
           child: Container(
             padding: const EdgeInsets.all(2.0),
             decoration: BoxDecoration(
@@ -31,7 +31,7 @@ class Badgee extends StatelessWidget {
               value,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 10,
+                fontSize: 11.5,
               ),
             ),
           ),

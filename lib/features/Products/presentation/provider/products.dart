@@ -84,4 +84,8 @@ class Products with ChangeNotifier {
   void addProduct() {
     notifyListeners();
   }
+
+  void refreshProductList() {
+    notifyListeners();
+  }
 }

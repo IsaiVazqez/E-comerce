@@ -24,13 +24,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appbarHome(),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(children: [
-          const SizedBox(
-            height: 18,
-          ),
+          const SizedBox(height: 18),
+          const Appbar(),
+          const SizedBox(height: 18),
           buttonsfilter(),
           ListViewProducts(_showOnlyFavorites)
         ]),
@@ -83,54 +82,60 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+}
 
-  AppBar appbarHome() {
-    return AppBar(
-      title: const Text(
-        'My shop',
-        style: TextStyle(color: Colors.black),
-      ),
-      centerTitle: true,
-      backgroundColor: const Color.fromRGBO(183, 148, 246, 1),
-      actions: <Widget>[
-/*         PopupMenuButton<FilterOptions>(
-          onSelected: (FilterOptions selectedValue) {
-            setState(() {
-              if (selectedValue == FilterOptions.favorites) {
-                _showOnlyFavorites = true;
-              } else {
-                _showOnlyFavorites = false;
-              }
-            });
-          },
-          icon: const Icon(
-            CupertinoIcons.list_dash,
-            color: Colors.black,
-          ),
-          itemBuilder: (_) => [
-            const PopupMenuItem(
-                value: FilterOptions.favorites, child: Text('Only Favorites')),
-            const PopupMenuItem(
-                value: FilterOptions.all, child: Text('Show all'))
-          ],
-        ), */
-        Consumer<Cart>(
-          builder: (_, cart, ch) => Badgee(
-            value: cart.itemCount.toString(),
-            child: ch!,
-          ),
-          child: IconButton(
-            icon: const Icon(
-              CupertinoIcons.shopping_cart,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const CartScreen()));
-            },
+class Appbar extends StatelessWidget {
+  const Appbar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      top: true,
+      bottom: false,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: SizedBox(
+          width: double.infinity,
+          child: Row(
+            children: <Widget>[
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  CupertinoIcons.back,
+                  size: 33,
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Text('My shop',
+                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
+              const Spacer(),
+              Consumer<Cart>(
+                builder: (_, cart, ch) => Badgee(
+                  value: cart.itemCount.toString(),
+                  child: ch!,
+                ),
+                child: IconButton(
+                  icon: const Icon(
+                    CupertinoIcons.shopping_cart,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CartScreen()));
+                  },
+                ),
+              ),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
 }
