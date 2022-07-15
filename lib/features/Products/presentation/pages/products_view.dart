@@ -112,7 +112,10 @@ class Appbar extends StatelessWidget {
               ),
               const SizedBox(width: 8),
               const Text('My shop',
-                  style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700)),
+                  style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black)),
               const Spacer(),
               Consumer<Cart>(
                 builder: (_, cart, ch) => Badgee(
