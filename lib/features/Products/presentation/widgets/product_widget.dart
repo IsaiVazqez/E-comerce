@@ -168,7 +168,7 @@ class _Icons extends StatelessWidget {
             },
             child: Icon(
               like,
-              color: const Color.fromARGB(255, 194, 160, 252),
+              color: Colors.black,
             ),
           ),
           CupertinoButton(
@@ -177,7 +177,7 @@ class _Icons extends StatelessWidget {
             },
             child: Icon(
               cart,
-              color: const Color.fromARGB(255, 194, 160, 252),
+              color: Colors.black,
             ),
           )
         ],

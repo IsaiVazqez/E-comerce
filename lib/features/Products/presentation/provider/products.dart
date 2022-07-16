@@ -9,7 +9,7 @@ class Products with ChangeNotifier {
       description: 'A red shirt - it is pretty red!',
       price: 28.99,
       imageUrl:
-          'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
+          'https://assets.stickpng.com/images/580b57fcd9996e24bc43c1b8.png',
     ),
     Product(
       id: 'p2',
@@ -17,7 +17,7 @@ class Products with ChangeNotifier {
       description: 'A nice pair of trousers.',
       price: 59.99,
       imageUrl:
-          'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
+          'https://assets.stickpng.com/images/580b57fcd9996e24bc43c1b8.png',
     ),
     Product(
       id: 'p3',
@@ -25,7 +25,7 @@ class Products with ChangeNotifier {
       description: 'Warm and cozy - exactly what you need for the winter.',
       price: 19.99,
       imageUrl:
-          'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
+          'https://assets.stickpng.com/images/580b57fcd9996e24bc43c1b8.png',
     ),
     Product(
       id: 'p4',
