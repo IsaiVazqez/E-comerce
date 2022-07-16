@@ -12,34 +12,40 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<Cart>(context);
     return Scaffold(
-      body: Column(children: [
-        Expanded(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              verticalDirection: VerticalDirection.down,
-              children: <Widget>[
-                const CustomAppBar('lmaoooooioioio'),
-                ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: cartProvider.items.length,
-                  itemBuilder: (ctx, i) => CartItemm(
-                    cartProvider.items.values.toList()[i].id,
-                    cartProvider.items.keys.toList()[i],
-                    cartProvider.items.values.toList()[i].price,
-                    cartProvider.items.values.toList()[i].quantity,
-                    cartProvider.items.values.toList()[i].title,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-            top: 100,
-            child: AddCartButton(monto: '\$${cartProvider.totalAmount.ceil()}'))
-      ]),
+      body: Column(
+        children: <Widget>[
+          const SizedBox(height: 18),
+          const CustomAppBar('lmaoooooioioio'),
+          Expanded(child: Listview(cartProvider: cartProvider)),
+          AddCartButton(monto: '\$${cartProvider.totalAmount.ceil()}')
+        ],
+      ),
+    );
+  }
+}
+
+class Listview extends StatelessWidget {
+  const Listview({
+    Key? key,
+    required this.cartProvider,
+  }) : super(key: key);
+
+  final Cart cartProvider;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
+      padding: EdgeInsets.zero,
+      shrinkWrap: true,
+      itemCount: cartProvider.items.length,
+      itemBuilder: (ctx, i) => CartItemm(
+        cartProvider.items.values.toList()[i].id,
+        cartProvider.items.keys.toList()[i],
+        cartProvider.items.values.toList()[i].price,
+        cartProvider.items.values.toList()[i].quantity,
+        cartProvider.items.values.toList()[i].title,
+      ),
     );
   }
 }
