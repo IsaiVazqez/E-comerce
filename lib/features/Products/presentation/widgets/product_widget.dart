@@ -35,13 +35,7 @@ class ProductItem extends StatelessWidget {
                 descr: product.description,
               ),
               _BackgroundImage(product.imageUrl),
-              Consumer<Product>(
-                builder: (context, product, child) => _Icons(
-                    cart: CupertinoIcons.add,
-                    like: product.isFavorite
-                        ? CupertinoIcons.heart_circle_fill
-                        : CupertinoIcons.heart_circle),
-              )
+              const Heartbutton()
             ],
           ),
         ),
@@ -52,6 +46,23 @@ class ProductItem extends StatelessWidget {
   BoxDecoration _cardBorders() => const BoxDecoration(
         color: Colors.transparent,
       );
+}
+
+class Heartbutton extends StatelessWidget {
+  const Heartbutton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<Product>(
+      builder: (context, product, child) => Icons(
+          cart: CupertinoIcons.add,
+          like: product.isFavorite
+              ? CupertinoIcons.heart_circle_fill
+              : CupertinoIcons.heart_circle),
+    );
+  }
 }
 
 class _ProductDetails extends StatelessWidget {
@@ -138,11 +149,11 @@ class _BackgroundImage extends StatelessWidget {
   }
 }
 
-class _Icons extends StatelessWidget {
+class Icons extends StatelessWidget {
   final IconData like;
   final IconData cart;
 
-  const _Icons({
+  const Icons({
     Key? key,
     required this.like,
     required this.cart,

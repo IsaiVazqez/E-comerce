@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/core/widgets/buttons_product.dart';
 import 'package:shop_app/core/widgets/custom_circular.dart';
 import 'package:shop_app/features/Products/data/models/product.dart';
+import 'package:shop_app/features/Products/presentation/provider/cart.dart';
 import 'package:shop_app/features/Products/presentation/provider/products.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -14,6 +16,8 @@ class ProductDetailScreen extends StatelessWidget {
     final productId = ModalRoute.of(context)?.settings.arguments as String;
     final loadedProduct =
         Provider.of<Products>(context, listen: false).findById(productId);
+    final cartProvider = Provider.of<Cart>(context);
+
     return Scaffold(
       body: Stack(children: [
         Column(
@@ -42,6 +46,10 @@ class ProductDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
+            const Spacer(),
+            const ColoresYmas(),
+            AddProduct(
+                loadedProduct: loadedProduct, cartProvider: cartProvider),
           ],
         ),
         Positioned(
@@ -56,6 +64,74 @@ class ProductDetailScreen extends StatelessWidget {
               ),
             )),
       ]),
+    );
+  }
+}
+
+class AddProduct extends StatelessWidget {
+  const AddProduct({
+    Key? key,
+    required this.loadedProduct,
+    required this.cartProvider,
+  }) : super(key: key);
+
+  final Product loadedProduct;
+  final Cart cartProvider;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Container(
+        width: double.infinity,
+        height: 100,
+        decoration: BoxDecoration(
+            color: Colors.grey.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(100)),
+        child: Expanded(
+          child: Row(children: [
+            const SizedBox(
+              width: 20,
+            ),
+            Text('\$${loadedProduct.price}',
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+            const Spacer(),
+            OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                fixedSize: const Size(155, 50),
+                textStyle:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                shape: const StadiumBorder(),
+                backgroundColor: Colors.white,
+              ),
+              onPressed: () {
+                cartProvider.addItem(
+                    loadedProduct.id, loadedProduct.price, loadedProduct.title);
+              },
+              child: RichText(
+                text: const TextSpan(children: [
+                  TextSpan(
+                    text: 'Add To Cart  ',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.middle,
+                    child:
+                        Icon(CupertinoIcons.add, size: 24, color: Colors.black),
+                  ),
+                ]),
+              ),
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+          ]),
+        ),
+      ),
     );
   }
 }

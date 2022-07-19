@@ -6,11 +6,6 @@ import 'package:shop_app/features/Products/presentation/provider/cart.dart';
 import 'package:shop_app/features/Products/presentation/widgets/badge.dart';
 import 'package:shop_app/features/Products/presentation/widgets/list_view.dart';
 
-enum FilterOptions {
-  favorites,
-  all,
-}
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
