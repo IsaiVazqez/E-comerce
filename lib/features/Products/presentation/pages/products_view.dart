@@ -1,8 +1,10 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/features/Cart/Presentation/Pages/cart_screen.dart';
-import 'package:shop_app/features/Products/presentation/provider/cart.dart';
+import 'package:shop_app/features/Cart/Presentation/Pages/orders_screen.dart';
+import 'package:shop_app/features/Cart/Presentation/providers/cart.dart';
 import 'package:shop_app/features/Products/presentation/widgets/badge.dart';
 import 'package:shop_app/features/Products/presentation/widgets/list_view.dart';
 
@@ -21,14 +23,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: Column(children: [
-          const SizedBox(height: 18),
-          const Appbar(),
-          const SizedBox(height: 12),
-          buttonsfilter(),
-          const SizedBox(height: 5),
-          ListViewProducts(_showOnlyFavorites)
-        ]),
+        child: FadeInLeft(
+          child: Column(children: [
+            const SizedBox(height: 18),
+            const Appbar(),
+            const SizedBox(height: 12),
+            buttonsfilter(),
+            const SizedBox(height: 5),
+            ListViewProducts(_showOnlyFavorites)
+          ]),
+        ),
       ),
     );
   }
@@ -98,7 +102,11 @@ class Appbar extends StatelessWidget {
             children: <Widget>[
               IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const OrdersScreen()),
+                  );
                 },
                 icon: const Icon(
                   CupertinoIcons.back,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/features/Products/presentation/provider/cart.dart';
+import 'package:shop_app/features/Cart/Presentation/providers/cart.dart';
 
 class CartItemm extends StatelessWidget {
   final String id;
@@ -52,7 +52,7 @@ class CartItemm extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: FittedBox(
-                  child: Text('\$$price'),
+                  child: Text('\$ $price'),
                 ),
               ),
             ),

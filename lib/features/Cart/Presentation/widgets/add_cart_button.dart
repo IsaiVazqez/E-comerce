@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/features/Cart/Presentation/providers/orders.dart';
+import 'package:shop_app/features/Cart/Presentation/providers/cart.dart';
 
 class AddCartButton extends StatelessWidget {
   final String? monto;
@@ -8,6 +11,7 @@ class AddCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<Cart>(context);
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Container(
@@ -33,7 +37,13 @@ class AddCartButton extends StatelessWidget {
                 shape: const StadiumBorder(),
                 backgroundColor: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<Orders>(context, listen: false).addOrder(
+                  cartProvider.items.values.toList(),
+                  cartProvider.totalAmount,
+                );
+                cartProvider.clear();
+              },
               child: RichText(
                 text: const TextSpan(children: [
                   TextSpan(

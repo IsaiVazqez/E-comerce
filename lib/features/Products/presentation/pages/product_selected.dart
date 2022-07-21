@@ -1,10 +1,11 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/core/widgets/buttons_product.dart';
 import 'package:shop_app/core/widgets/custom_circular.dart';
 import 'package:shop_app/features/Products/data/models/product.dart';
-import 'package:shop_app/features/Products/presentation/provider/cart.dart';
+import 'package:shop_app/features/Cart/Presentation/providers/cart.dart';
 import 'package:shop_app/features/Products/presentation/provider/products.dart';
 
 class ProductDetailScreen extends StatelessWidget {
@@ -22,7 +23,10 @@ class ProductDetailScreen extends StatelessWidget {
       body: Stack(children: [
         Column(
           children: [
-            Containerimage(loadedProduct: loadedProduct),
+            FadeInDown(
+              duration: const Duration(milliseconds: 650),
+              child: Containerimage(loadedProduct: loadedProduct),
+            ),
             const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
@@ -151,7 +155,7 @@ class Containerimage extends StatelessWidget {
       height: 350,
       decoration: BoxDecoration(
           color: const Color(0xffFFCF53),
-          borderRadius: BorderRadius.circular(50)),
+          borderRadius: BorderRadius.circular(35)),
       child: Column(
         children: <Widget>[
           Padding(

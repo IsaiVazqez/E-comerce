@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_app/core/widgets/custom_appbar.dart';
 import 'package:shop_app/features/Cart/Presentation/widgets/add_cart_button.dart';
 import 'package:shop_app/features/Cart/Presentation/widgets/cart_beta.dart';
-import 'package:shop_app/features/Products/presentation/provider/cart.dart';
+import 'package:shop_app/features/Cart/Presentation/providers/cart.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class CartScreen extends StatelessWidget {
       body: Column(
         children: <Widget>[
           const SizedBox(height: 18),
-          const CustomAppBar('lmaoooooioioio'),
+          const CustomAppBar('My cart'),
           Expanded(child: Listview(cartProvider: cartProvider)),
           AddCartButton(monto: '\$${cartProvider.totalAmount.ceil()}')
         ],
