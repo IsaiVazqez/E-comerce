@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/features/Cart/Presentation/providers/orders.dart';
 import 'package:shop_app/features/Cart/Presentation/providers/cart.dart';
+import 'package:shop_app/features/Stripe/presentation/pages/payment_screen.dart';
 
 class AddCartButton extends StatelessWidget {
   final String? monto;
@@ -38,10 +39,15 @@ class AddCartButton extends StatelessWidget {
                 backgroundColor: Colors.white,
               ),
               onPressed: () {
-                Provider.of<Orders>(context, listen: false).addOrder(
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PaymentScreen()),
+                );
+/*                 Provider.of<Orders>(context, listen: false).addOrder(
                   cartProvider.items.values.toList(),
                   cartProvider.totalAmount,
-                );
+                ); */
                 cartProvider.clear();
               },
               child: RichText(
