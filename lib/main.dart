@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/features/Cart/Presentation/providers/orders.dart';
 import 'package:shop_app/features/Cart/Presentation/providers/cart.dart';
 import 'package:shop_app/features/Products/presentation/provider/products.dart';
 import 'package:shop_app/routes/routes.dart';
 
-void main() => runApp(
-      const MyApp(),
-    );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey =
+      'pk_live_51LOOzzC1VEE2NdrBmIggAQl350wyicT8KXeyat7VKcgru4E6MKoEW5ec1Y0TB6Fi7jHMgsr8kQA5Rro7CZUjfwln00KYd3RUgv';
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
