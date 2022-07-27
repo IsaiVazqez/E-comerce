@@ -4,7 +4,7 @@ class CartItem {
   final String id;
   final String title;
   final int quantity;
-  final double price;
+  final int price;
 
   CartItem({
     required this.id,
@@ -24,15 +24,15 @@ class Cart with ChangeNotifier {
   int get itemCount => _items.values
       .fold(0, (quantity, cartItem) => cartItem.quantity + quantity);
 
-  double get totalAmount {
-    var total = 0.0;
+  int get totalAmount {
+    var total = 0;
     _items.forEach((key, cartItem) {
       total += cartItem.price * cartItem.quantity;
     });
     return total;
   }
 
-  void addItem(String productId, double price, String title) {
+  void addItem(String productId, int price, String title) {
     if (_items.containsKey(productId)) {
       _items.update(
           productId,

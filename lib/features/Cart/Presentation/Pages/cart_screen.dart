@@ -17,7 +17,7 @@ class CartScreen extends StatelessWidget {
           const SizedBox(height: 18),
           const CustomAppBar('My cart'),
           Expanded(child: Listview(cartProvider: cartProvider)),
-          AddCartButton(monto: '\$${cartProvider.totalAmount.ceil()}')
+          AddCartButton(monto: '\$${cartProvider.totalAmount}')
         ],
       ),
     );

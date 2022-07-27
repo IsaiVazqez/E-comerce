@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/features/Cart/Presentation/providers/orders.dart';
 import 'package:shop_app/features/Cart/Presentation/providers/cart.dart';
@@ -13,6 +14,7 @@ class AddCartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<Cart>(context);
+    final paymentController = Get.put(PaymentController());
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Container(
@@ -39,15 +41,13 @@ class AddCartButton extends StatelessWidget {
                 backgroundColor: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PaymentScreen()),
-                );
-/*                 Provider.of<Orders>(context, listen: false).addOrder(
+                paymentController.makePayment(
+                    amount: cartProvider.totalAmount.toString(),
+                    currency: 'MXN');
+                Provider.of<Orders>(context, listen: false).addOrder(
                   cartProvider.items.values.toList(),
                   cartProvider.totalAmount,
-                ); */
+                );
                 cartProvider.clear();
               },
               child: RichText(

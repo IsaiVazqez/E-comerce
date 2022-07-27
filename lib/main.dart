@@ -9,7 +9,7 @@ import 'package:shop_app/routes/routes.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey =
-      'pk_live_51LOOzzC1VEE2NdrBmIggAQl350wyicT8KXeyat7VKcgru4E6MKoEW5ec1Y0TB6Fi7jHMgsr8kQA5Rro7CZUjfwln00KYd3RUgv';
+      'pk_test_51LOOzzC1VEE2NdrBXFMtq4G0i3Zl8PWSOLgpLbFghLcfUhu14nwGW6WbaeYw73kHVd1jVk22yJJbl8v9502hYczZ00bo4aQG4d';
   runApp(const MyApp());
 }
 
