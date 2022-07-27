@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,9 @@ class ListViewProducts extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) =>
           ChangeNotifierProvider.value(
         value: products[index],
-        child: const ProductItem(),
+        child: FadeInLeft(
+            delay: Duration(milliseconds: 200 * index),
+            child: const ProductItem()),
       ),
     );
   }

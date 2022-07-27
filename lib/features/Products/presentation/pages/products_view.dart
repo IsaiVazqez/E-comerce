@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +10,11 @@ import 'package:shop_app/features/Cart/Presentation/providers/cart.dart';
 import 'package:shop_app/features/Products/presentation/widgets/badge.dart';
 import 'package:shop_app/features/Products/presentation/widgets/list_view.dart';
 
+enum FilterOptions {
+  favorites,
+  all,
+}
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -15,24 +22,20 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  bool _showOnlyFavorites = false;
+bool showOnlyFavorites = false;
 
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: FadeInLeft(
-          child: Column(children: [
-            const SizedBox(height: 18),
-            const Appbar(),
-            const SizedBox(height: 12),
-            buttonsfilter(),
-            const SizedBox(height: 5),
-            ListViewProducts(_showOnlyFavorites)
-          ]),
-        ),
+        child: Column(children: [
+          const SizedBox(height: 18),
+          FadeInLeft(child: const Appbar()),
+          const SizedBox(height: 8),
+          ListViewProducts(showOnlyFavorites)
+        ]),
       ),
     );
   }
@@ -51,7 +54,7 @@ class _HomePageState extends State<HomePage> {
           ),
           onPressed: () {
             setState(() {
-              _showOnlyFavorites = false;
+              showOnlyFavorites = false;
             });
           },
           child: const Text(
@@ -70,7 +73,7 @@ class _HomePageState extends State<HomePage> {
           ),
           onPressed: () {
             setState(() {
-              _showOnlyFavorites = true;
+              showOnlyFavorites = true;
             });
           },
           child: const Text(
@@ -84,11 +87,16 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class Appbar extends StatelessWidget {
+class Appbar extends StatefulWidget {
   const Appbar({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<Appbar> createState() => _AppbarState();
+}
+
+class _AppbarState extends State<Appbar> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -113,13 +121,53 @@ class Appbar extends StatelessWidget {
                   size: 33,
                 ),
               ),
-              const SizedBox(width: 8),
-              const Text('My shop',
+              const SizedBox(width: 4),
+              const Text('Helados',
                   style: TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.w700,
                       color: Colors.black)),
               const Spacer(),
+              IconButton(
+                onPressed: () {
+                  if (Platform.isIOS) {
+                    showCupertinoModalPopup<void>(
+                      context: context,
+                      builder: (BuildContext context) => CupertinoActionSheet(
+                        actions: <CupertinoActionSheetAction>[
+                          CupertinoActionSheetAction(
+                            isDefaultAction: true,
+                            onPressed: () {
+                              setState(() {
+                                showOnlyFavorites = false;
+                              });
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                              'Mostrar todos',
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                          ),
+                          CupertinoActionSheetAction(
+                            onPressed: () {
+                              setState(() {
+                                showOnlyFavorites = true;
+                              });
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                              'Mostrar Favoritos',
+                              style: TextStyle(color: Colors.blue),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                },
+                icon: const Icon(CupertinoIcons.list_dash,
+                    color: Colors.black, size: 30),
+              ),
               Consumer<Cart>(
                 builder: (_, cart, ch) => Badgee(
                   value: cart.itemCount.toString(),
