@@ -110,11 +110,7 @@ class _AppbarState extends State<Appbar> {
             children: <Widget>[
               IconButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const OrdersScreen()),
-                  );
+                  Navigator.pop(context);
                 },
                 icon: const Icon(
                   CupertinoIcons.back,

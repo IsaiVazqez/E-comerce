@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Shop App',
-        initialRoute: 'ProductsView',
+        initialRoute: 'HomePage',
         routes: appRoutes,
         theme: ThemeData(
           primarySwatch: Colors.blue,
